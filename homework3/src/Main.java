@@ -16,7 +16,9 @@ public class Main {
         studentList.findMaxDataNotes();
         System.out.println("------------------");
         studentList.findMathAvarage();
-
+        System.out.println("------------------");
+        studentList.findLowestDataStructuresNoteStudent();
+        System.out.println("------------------");
     }
 
 

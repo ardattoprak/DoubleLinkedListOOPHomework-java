@@ -173,6 +173,7 @@ public class DoublyLinkedList<T extends Comparable & IComparableByDataNotes> {
             }
         }
     }
+
     public void findMaxDataNotes() {
         if (head == null) {
         }
@@ -201,21 +202,39 @@ public class DoublyLinkedList<T extends Comparable & IComparableByDataNotes> {
         }
     }
 
-    public void findMathAvarage(){
+    public void findMathAvarage() {
         int avarage = 0;
         int studentCount = 0;
         DNode<T> iterator = head;
-        if (head == null){
+        if (head == null) {
             System.out.println("This linkedlist are empty");
-        }else {
-            if(iterator.value instanceof Student){
-                while(iterator!=null){
+        } else {
+            if (iterator.value instanceof Student) {
+                while (iterator != null) {
                     Student student = (Student) iterator.value;
                     avarage += student.getMathNote();
                     studentCount++;
                     iterator = iterator.next;
                 }
-                System.out.println("Math avarage is : " + avarage/studentCount);
+                System.out.println("Math avarage is : " + avarage / studentCount);
+            }
+        }
+    }
+
+    public void findLowestDataStructuresNoteStudent() {
+        DNode<T> iterator = head;
+        if (head == null) {
+            System.out.println("This linkedlist are empty");
+        } else {
+            if (iterator.value instanceof Student) {
+                Student student = (Student) iterator.value;
+                while (iterator != null) {
+                    if (student.getDataStructuresNode() > ((Student) iterator.value).getDataStructuresNode()){
+                        student = (Student) iterator.value;
+                    }
+                    iterator = iterator.next;
+                }
+                System.out.println("Student information who has lowest data Structures grade is : " + student.getId() + " " + student.getName()+ " "+ student.getMathNote() + " " + student.getDataStructuresNode());
             }
         }
     }

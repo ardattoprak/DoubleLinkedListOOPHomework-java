@@ -79,8 +79,4 @@ public class Student implements Comparable , IComparableByDataNotes {
             return -1;
         else return -2;
     }
-
-    public void a(){
-
-    }
 }
