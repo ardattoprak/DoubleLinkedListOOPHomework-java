@@ -11,11 +11,24 @@ public class Main {
         //studentList.displayStudentlist();
         //studentList.displayStudentlist();
         System.out.println("------------------");
-        //studentList.findMax();
-
-
+        studentList.findMaxAvarage();
+        System.out.println("------------------");
+        studentList.findMaxDataNotes();
+        System.out.println("------------------");
+        studentList.findMathAvarage();
 
     }
+
+
+
+
+
+
+
+
+
+
+
     public static DoublyLinkedList<Student> readFileAndCreateLinkedList(String string) throws FileNotFoundException {
         File file = new File(string);
         Scanner scanner = new Scanner(file);

@@ -1,4 +1,4 @@
-public class DNode<T extends Comparable> {
+public class DNode<T extends IComparableByDataNotes> {
 
     public T value;
     public DNode<T> next,prev;

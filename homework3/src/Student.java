@@ -1,4 +1,4 @@
-public class Student implements Comparable , IComparableByDataNotes , IComparableByAvarage {
+public class Student implements Comparable , IComparableByDataNotes {
     private int id;
     private String name;
     private int mathNote;
@@ -49,13 +49,21 @@ public class Student implements Comparable , IComparableByDataNotes , IComparabl
     }
 
     @Override
-    public void compareByDataNotes(Object o) {
+    public int compareByDataNotes(Object o) {
         Student student = ((Student) o);
-        if (this.dataStructuresNode == )
+        if (this.dataStructuresNode == student.dataStructuresNode && this.id != student.id)
+            return 0;
+        else if (this.dataStructuresNode == student.dataStructuresNode && this.id == student.id)
+            return 2;
+        else if (this.dataStructuresNode > student.dataStructuresNode && this.id != student.id)
+            return 1;
+        else if (this.dataStructuresNode < student.dataStructuresNode && this.id != student.id)
+            return -1;
+        else return -2;
     }
 
     @Override
-    public int compareByAvarage(Object o) {
+    public int compareTo(Object o) {
         Student student = ((Student) o);
         double avarageThis = (((double) this.dataStructuresNode + this.mathNote)/2);
         double avarageO = (((double) student.dataStructuresNode + student.mathNote)/2);
@@ -70,11 +78,9 @@ public class Student implements Comparable , IComparableByDataNotes , IComparabl
         else if ( avarageThis < avarageO && thisId != studentId)
             return -1;
         else return -2;
-
     }
 
-    @Override
-    public int compareTo(Object o) {
-        return 0;
+    public void a(){
+
     }
 }

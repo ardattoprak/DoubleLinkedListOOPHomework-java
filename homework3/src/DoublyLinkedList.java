@@ -1,6 +1,6 @@
 import org.w3c.dom.ls.LSOutput;
 
-public class DoublyLinkedList<T extends Comparable> {
+public class DoublyLinkedList<T extends Comparable & IComparableByDataNotes> {
     DNode<T> head;
 
     public DNode<T> createNode(T val) {
@@ -146,13 +146,11 @@ public class DoublyLinkedList<T extends Comparable> {
             }
         }
     }*/
-    public void findMax() {
-
+    public void findMaxAvarage() {
         if (head == null) {
-
         }
         T deneme = head.value;
-        if (deneme instanceof IComparableByAvarage) {
+        if (deneme instanceof Student) {
             int count = 0;
             DNode<T> tempIterator = head;
             DoublyLinkedList doublyLinkedList = new DoublyLinkedList<>();
@@ -161,7 +159,6 @@ public class DoublyLinkedList<T extends Comparable> {
                 count++;
                 tempIterator = tempIterator.next;
             }
-
             for (int i = 0; i < count; i++) {
                 T max = (T) doublyLinkedList.head.value;
                 DNode<T> iterator = doublyLinkedList.head;
@@ -172,11 +169,15 @@ public class DoublyLinkedList<T extends Comparable> {
                     iterator = iterator.next;
                 }
                 System.out.println(max);
-                deneme = max;
                 doublyLinkedList.delete(max);
             }
-
-        }if (deneme instanceof IComparableByDataNotes) {
+        }
+    }
+    public void findMaxDataNotes() {
+        if (head == null) {
+        }
+        T deneme = head.value;
+        if (deneme instanceof IComparableByDataNotes) {
             int count = 0;
             DNode<T> tempIterator = head;
             DoublyLinkedList doublyLinkedList = new DoublyLinkedList<>();
@@ -185,17 +186,37 @@ public class DoublyLinkedList<T extends Comparable> {
                 count++;
                 tempIterator = tempIterator.next;
             }
-
             for (int i = 0; i < count; i++) {
                 T max = (T) doublyLinkedList.head.value;
                 DNode<T> iterator = doublyLinkedList.head;
                 while (iterator != null) {
-                    if (iterator.value.compareTo(max) == 1) {
+                    if (iterator.value.compareByDataNotes(max) == 1) {
                         max = iterator.value;
                     }
                     iterator = iterator.next;
                 }
-        //((Car)max).toString();   //başşka bi interface aç
+                System.out.println(max);
+                doublyLinkedList.delete(max);
+            }
+        }
     }
 
-}}}
+    public void findMathAvarage(){
+        int avarage = 0;
+        int studentCount = 0;
+        DNode<T> iterator = head;
+        if (head == null){
+            System.out.println("This linkedlist are empty");
+        }else {
+            if(iterator.value instanceof Student){
+                while(iterator!=null){
+                    Student student = (Student) iterator.value;
+                    avarage += student.getMathNote();
+                    studentCount++;
+                    iterator = iterator.next;
+                }
+                System.out.println("Math avarage is : " + avarage/studentCount);
+            }
+        }
+    }
+}

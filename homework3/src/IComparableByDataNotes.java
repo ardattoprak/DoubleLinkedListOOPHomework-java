@@ -1,3 +1,3 @@
 public interface IComparableByDataNotes {
-     void compareByDataNotes(Object o);
+     int compareByDataNotes(Object o);
 }
