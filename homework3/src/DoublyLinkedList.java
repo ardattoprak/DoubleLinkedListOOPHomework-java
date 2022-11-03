@@ -229,13 +229,36 @@ public class DoublyLinkedList<T extends Comparable & IComparableByDataNotes> {
             if (iterator.value instanceof Student) {
                 Student student = (Student) iterator.value;
                 while (iterator != null) {
-                    if (student.getDataStructuresNode() > ((Student) iterator.value).getDataStructuresNode()){
+                    if (student.getDataStructuresNode() > ((Student) iterator.value).getDataStructuresNode()) {
                         student = (Student) iterator.value;
                     }
                     iterator = iterator.next;
                 }
-                System.out.println("Student information who has lowest data Structures grade is : " + student.getId() + " " + student.getName()+ " "+ student.getMathNote() + " " + student.getDataStructuresNode());
+                System.out.println("Student information who has lowest data Structures grade is : " + student.getId() + " " + student.getName() + " " + student.getMathNote() + " " + student.getDataStructuresNode());
             }
         }
+    }
+
+    public void deleteStudent(int id) {
+        DNode<T> iterator = head;
+        if (head == null) {
+            System.out.println("This linkedlist are empty");
+        } else {
+            if (iterator.value instanceof Student) {
+                Student student = (Student) iterator.value;
+                while (iterator != null ) {
+                    if (student.getId() == id){
+                        delete((T) student);
+                        break;
+                    }
+                    student = (Student) iterator.value;
+                    iterator = iterator.next;
+                }
+            }
+        }
+    }
+
+    public void insertStudent(Student student){
+        addToEnd((T) student);
     }
 }

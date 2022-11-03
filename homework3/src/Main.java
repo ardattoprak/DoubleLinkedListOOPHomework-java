@@ -19,9 +19,19 @@ public class Main {
         System.out.println("------------------");
         studentList.findLowestDataStructuresNoteStudent();
         System.out.println("------------------");
+        studentList.deleteStudent(1398);
+        System.out.println("------------------");
+        studentList.display();
+
+        Student arda = new Student(13,"arda",100,90);
+        studentList.insertStudent(arda);
+        studentList.display();
+        System.out.println("------------------");
+
     }
 
 
+    
 
 
 
