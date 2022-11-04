@@ -1,4 +1,4 @@
-public class Student implements Comparable , IComparableByDataNotes {
+public class Student implements Comparable {
     private int id;
     private String name;
     private int mathNote;
@@ -36,7 +36,7 @@ public class Student implements Comparable , IComparableByDataNotes {
         this.dataStructuresNode = dataStructuresNode;
     }
 
-    public Student(int id , String name, int mathNote, int dataStructuresNode){
+    public Student(int id, String name, int mathNote, int dataStructuresNode) {
         this.id = id;
         this.name = name;
         this.mathNote = mathNote;
@@ -44,11 +44,10 @@ public class Student implements Comparable , IComparableByDataNotes {
     }
 
 
-    public String toString(){
+    public String toString() {
         return this.id + " " + this.name + " " + this.mathNote + " " + this.dataStructuresNode;
     }
 
-    @Override
     public int compareByDataNotes(Object o) {
         Student student = ((Student) o);
         if (this.dataStructuresNode == student.dataStructuresNode && this.id != student.id)
@@ -65,17 +64,17 @@ public class Student implements Comparable , IComparableByDataNotes {
     @Override
     public int compareTo(Object o) {
         Student student = ((Student) o);
-        double avarageThis = (((double) this.dataStructuresNode + this.mathNote)/2);
-        double avarageO = (((double) student.dataStructuresNode + student.mathNote)/2);
+        double avarageThis = (((double) this.dataStructuresNode + this.mathNote) / 2);
+        double avarageO = (((double) student.dataStructuresNode + student.mathNote) / 2);
         int thisId = this.id;
         int studentId = student.id;
-        if (avarageThis == avarageO && thisId != studentId )
+        if (avarageThis == avarageO && thisId != studentId)
             return 0;
         else if (avarageThis == avarageO && thisId == studentId)
             return 2;
-        else if ( avarageThis > avarageO && thisId != studentId)
+        else if (avarageThis > avarageO && thisId != studentId)
             return 1;
-        else if ( avarageThis < avarageO && thisId != studentId)
+        else if (avarageThis < avarageO && thisId != studentId)
             return -1;
         else return -2;
     }

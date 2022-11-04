@@ -1,6 +1,5 @@
-import org.w3c.dom.ls.LSOutput;
 
-public class DoublyLinkedList<T extends Comparable & IComparableByDataNotes> {
+public class DoublyLinkedList<T extends Comparable> {
     DNode<T> head;
 
     public DNode<T> createNode(T val) {
@@ -178,7 +177,7 @@ public class DoublyLinkedList<T extends Comparable & IComparableByDataNotes> {
         if (head == null) {
         }
         T deneme = head.value;
-        if (deneme instanceof IComparableByDataNotes) {
+        if (deneme instanceof Student) {
             int count = 0;
             DNode<T> tempIterator = head;
             DoublyLinkedList doublyLinkedList = new DoublyLinkedList<>();
@@ -191,7 +190,8 @@ public class DoublyLinkedList<T extends Comparable & IComparableByDataNotes> {
                 T max = (T) doublyLinkedList.head.value;
                 DNode<T> iterator = doublyLinkedList.head;
                 while (iterator != null) {
-                    if (iterator.value.compareByDataNotes(max) == 1) {
+                    Student student = (Student) iterator.value;
+                    if (student.compareByDataNotes(max) == 1) {
                         max = iterator.value;
                     }
                     iterator = iterator.next;
@@ -221,7 +221,7 @@ public class DoublyLinkedList<T extends Comparable & IComparableByDataNotes> {
         }
     }
 
-    public void findLowestDataStructuresNoteStudent() {
+    public void findLowestDataStructuresNoteStudents() {
         DNode<T> iterator = head;
         if (head == null) {
             System.out.println("This linkedlist are empty");
@@ -234,7 +234,14 @@ public class DoublyLinkedList<T extends Comparable & IComparableByDataNotes> {
                     }
                     iterator = iterator.next;
                 }
-                System.out.println("Student information who has lowest data Structures grade is : " + student.getId() + " " + student.getName() + " " + student.getMathNote() + " " + student.getDataStructuresNode());
+                iterator = head;
+                while (iterator != null) {
+                    if (student.getDataStructuresNode() == ((Student) iterator.value).getDataStructuresNode()) {
+                        student = (Student) iterator.value;
+                        System.out.println("Student information who has lowest data Structures grade is : " + student.getId() + " " + student.getName() + " " + student.getMathNote() + " " + student.getDataStructuresNode());
+                    }
+                    iterator = iterator.next;
+                }
             }
         }
     }
@@ -246,8 +253,8 @@ public class DoublyLinkedList<T extends Comparable & IComparableByDataNotes> {
         } else {
             if (iterator.value instanceof Student) {
                 Student student = (Student) iterator.value;
-                while (iterator != null ) {
-                    if (student.getId() == id){
+                while (iterator != null) {
+                    if (student.getId() == id) {
                         delete((T) student);
                         break;
                     }
@@ -258,7 +265,26 @@ public class DoublyLinkedList<T extends Comparable & IComparableByDataNotes> {
         }
     }
 
-    public void insertStudent(Student student){
+    public void insertStudent(Student student) {
         addToEnd((T) student);
     }
+
+    public int displayStudentCount() {
+        DNode<T> iterator = head;
+        if (head == null) {
+            System.out.println("This linkedlist are empty");
+        } else {
+            if (iterator.value instanceof Student) {
+                int studentCount = 0;
+                while (iterator != null) {
+                    studentCount++;
+                    iterator = iterator.next;
+                }
+                    return studentCount;
+            }
+        }
+        return 0;
+    }
+
+    public 
 }
