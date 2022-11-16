@@ -147,59 +147,63 @@ public class DoublyLinkedList<T extends Comparable> {
     }*/
     public void findMaxAvarage() {
         if (head == null) {
-        }
-        T deneme = head.value;
-        if (deneme instanceof Student) {
-            int count = 0;
-            DNode<T> tempIterator = head;
-            DoublyLinkedList doublyLinkedList = new DoublyLinkedList<>();
-            while (tempIterator != null) {
-                doublyLinkedList.addToEnd(tempIterator.value);
-                count++;
-                tempIterator = tempIterator.next;
-            }
-            for (int i = 0; i < count; i++) {
-                T max = (T) doublyLinkedList.head.value;
-                DNode<T> iterator = doublyLinkedList.head;
-                while (iterator != null) {
-                    if (iterator.value.compareTo(max) == 1) {
-                        max = iterator.value;
-                    }
-                    iterator = iterator.next;
+        } else {
+            T deneme = head.value;
+            if (deneme instanceof Student) {
+                int count = 0;
+                DNode<T> tempIterator = head;
+                DoublyLinkedList doublyLinkedList = new DoublyLinkedList<>();
+                while (tempIterator != null) {
+                    doublyLinkedList.addToEnd(tempIterator.value);
+                    count++;
+                    tempIterator = tempIterator.next;
                 }
-                System.out.println(max);
-                doublyLinkedList.delete(max);
+                for (int i = 0; i < count; i++) {
+                    T max = (T) doublyLinkedList.head.value;
+                    DNode<T> iterator = doublyLinkedList.head;
+                    while (iterator != null) {
+                        if (iterator.value.compareTo(max) == 1) {
+                            max = iterator.value;
+                        }
+                        iterator = iterator.next;
+                    }
+                    System.out.println(max);
+                    doublyLinkedList.delete(max);
+                }
             }
         }
+
     }
 
     public void findMaxDataNotes() {
         if (head == null) {
-        }
-        T deneme = head.value;
-        if (deneme instanceof Student) {
-            int count = 0;
-            DNode<T> tempIterator = head;
-            DoublyLinkedList doublyLinkedList = new DoublyLinkedList<>();
-            while (tempIterator != null) {
-                doublyLinkedList.addToEnd(tempIterator.value);
-                count++;
-                tempIterator = tempIterator.next;
-            }
-            for (int i = 0; i < count; i++) {
-                T max = (T) doublyLinkedList.head.value;
-                DNode<T> iterator = doublyLinkedList.head;
-                while (iterator != null) {
-                    Student student = (Student) iterator.value;
-                    if (student.compareByDataNotes(max) == 1) {
-                        max = iterator.value;
-                    }
-                    iterator = iterator.next;
+        } else {
+            T deneme = head.value;
+            if (deneme instanceof Student) {
+                int count = 0;
+                DNode<T> tempIterator = head;
+                DoublyLinkedList doublyLinkedList = new DoublyLinkedList<>();
+                while (tempIterator != null) {
+                    doublyLinkedList.addToEnd(tempIterator.value);
+                    count++;
+                    tempIterator = tempIterator.next;
                 }
-                System.out.println(max);
-                doublyLinkedList.delete(max);
+                for (int i = 0; i < count; i++) {
+                    T max = (T) doublyLinkedList.head.value;
+                    DNode<T> iterator = doublyLinkedList.head;
+                    while (iterator != null) {
+                        Student student = (Student) iterator.value;
+                        if (student.compareByDataNotes(max) == 1) {
+                            max = iterator.value;
+                        }
+                        iterator = iterator.next;
+                    }
+                    System.out.println(max);
+                    doublyLinkedList.delete(max);
+                }
             }
         }
+
     }
 
     public void findMathAvarage() {
@@ -258,8 +262,8 @@ public class DoublyLinkedList<T extends Comparable> {
                         delete((T) student);
                         break;
                     }
-                    student = (Student) iterator.value;
                     iterator = iterator.next;
+                    student = (Student) iterator.value;
                 }
             }
         }
@@ -280,11 +284,77 @@ public class DoublyLinkedList<T extends Comparable> {
                     studentCount++;
                     iterator = iterator.next;
                 }
-                    return studentCount;
+                return studentCount;
             }
         }
         return 0;
     }
 
-    public 
+    public void displaySuccessfulStudents() {
+        if (head == null) {
+        } else {
+            T deneme = head.value;
+            if (deneme instanceof Student) {
+                int studentCount = 0;
+                int mathSum = 0;
+                int dataSum = 0;
+                DNode<T> iterator = head;
+                while (iterator != null) {
+                    Student student = (Student) iterator.value;
+                    mathSum += student.getMathNote();
+                    studentCount++;
+                    iterator = iterator.next;
+                }
+                iterator = head;
+                mathSum = mathSum / studentCount;
+                while (iterator != null) {
+                    Student student = (Student) iterator.value;
+                    dataSum += student.getDataStructuresNode();
+                    iterator = iterator.next;
+                }
+                int count1 = 0;
+                iterator = head;
+                dataSum = dataSum / studentCount;
+                while (iterator != null) {
+                    Student student = (Student) iterator.value;
+                    if (student.getMathNote() > mathSum) {
+                        if (count1 == 0) {
+                            System.out.println("successful students for math course (Math course avarage) : " + mathSum);
+                            count1++;
+                        }
+                        System.out.println(student.getId() + " " + student.getName() + " " + student.getMathNote() + " " + student.getDataStructuresNode());
+                    }
+                    iterator = iterator.next;
+                }
+                iterator = head;
+                int count2 = 0;
+                while (iterator != null) {
+                    Student student = (Student) iterator.value;
+
+                    if (student.getDataStructuresNode() > dataSum) {
+                        if (count2 == 0) {
+                            count2++;
+                            System.out.println("successful students for data stuctures course (Data s. course avarage) : " + dataSum);
+                        }
+                        System.out.println(student.getId() + " " + student.getName() + " " + student.getMathNote() + " " + student.getDataStructuresNode());
+                    }
+                    iterator = iterator.next;
+                }
+                int count3 = 0;
+                iterator = head;
+                while (iterator != null) {
+                    Student student = (Student) iterator.value;
+                    if (student.getDataStructuresNode() > dataSum && student.getMathNote() > mathSum) {
+                        if (count3 == 0) {
+                            System.out.println("successful students for every course (Data s. course avarage : " + dataSum + (") (Math course avarage : "+ mathSum+ " )"));
+                            count3++;
+                        }
+                        System.out.println(student.getId() + " " + student.getName() + " " + student.getMathNote() + " " + student.getDataStructuresNode());
+                    }
+                    iterator = iterator.next;
+                }
+
+            }
+        }
+    }
 }

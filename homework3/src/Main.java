@@ -1,48 +1,12 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.security.spec.ECField;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) throws FileNotFoundException {
-
         DoublyLinkedList<Student> studentList = readFileAndCreateLinkedList("students.txt");
-        //studentList.displayStudentlist();
-        //studentList.displayStudentlist();
-        //System.out.println("------------------");
-        //studentList.findMaxAvarage();
-        //System.out.println("------------------");
-        //studentList.findMaxDataNotes();
-        //System.out.println("------------------");
-        //studentList.findMathAvarage();
-        //System.out.println("------------------");
-        //studentList.findLowestDataStructuresNoteStudents();
-        //System.out.println("------------------");
-        //studentList.deleteStudent(1398);
-        //System.out.println("------------------");
-        //studentList.display();
-        //Student arda = new Student(13, "arda", 100, 11);
-        //studentList.insertStudent(arda);
-        //studentList.display();
-        //System.out.println("------------------");
-        //studentList.findLowestDataStructuresNoteStudents();
         menu(studentList);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public static void menu(DoublyLinkedList list) {
         Scanner scanner = new Scanner(System.in);
@@ -76,6 +40,7 @@ public class Main {
                 System.out.println("Please enter an id : ");
                 int id = scanner.nextInt();
                 list.deleteStudent(id);
+
             } else if (x == 7) {
                 System.out.println("Please enter an id : (type must be integer) ");
                 for (int i = 0; i < 1; i++) {
@@ -92,9 +57,9 @@ public class Main {
                                     int data = scanner.nextInt();
                                     System.out.println("Creating student");
                                     Student student = new Student(id, name, math, data);
-                                    System.out.println("Adding student");
+                                    System.out.println("Adding " + student.getName());
                                     list.insertStudent(student);
-                                    System.out.println("Added student");
+                                    System.out.println("Added " + student.getName());
                                 } catch (Exception e) {
                                     System.out.println("You must enter an integer value but you didn't.The program is shut down.");
                                 }
@@ -121,7 +86,7 @@ public class Main {
             } else if (x == 8) {
                 System.out.println("number of students in the LinkedList : " + list.displayStudentCount());
             } else if (x == 9) {
-
+                list.displaySuccessfulStudents();
             } else if (x == 0) {
                 System.out.println("The program is shut down. GoodByeeeeeee");
                 break;
@@ -129,12 +94,6 @@ public class Main {
         }
 
     }
-
-
-
-
-
-
 
     public static DoublyLinkedList<Student> readFileAndCreateLinkedList(String string) throws FileNotFoundException {
         File file = new File(string);
